@@ -5,10 +5,10 @@
     {
       "src": "./images/icon-quick-weather.png",
       "type": "image/png",
-      "sizes": "1024x1024"
+      "sizes": "460x460"
     }
   ],
-  "start_url": "https://quickweather.vercel.app",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#3399ff",
   "background_color": "#fff"
