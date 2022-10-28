@@ -3,7 +3,7 @@ import "./Loadding.css";
 const Loadding = () => {
   return (
     <div>
-      <div class="lds-ripple">
+      <div className="lds-ripple">
         <div></div>
         <div></div>
       </div>
