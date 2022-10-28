@@ -8,7 +8,7 @@
       "sizes": "1024x1024"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://quick-weather.vercel.app",
   "display": "standalone",
   "theme_color": "#3399ff",
   "background_color": "#fff"
