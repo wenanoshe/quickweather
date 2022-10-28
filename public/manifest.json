@@ -1,0 +1,15 @@
+{
+  "short_name": "Quick weather",
+  "name": "Weather app PWA",
+  "icons": [
+    {
+      "src": "./images/icon-quick-weather.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3399ff",
+  "background_color": "#fff"
+}
