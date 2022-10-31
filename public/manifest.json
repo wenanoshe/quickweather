@@ -1,14 +1,25 @@
 {
   "short_name": "Quick weather",
   "name": "Weather app PWA",
+  "description": "Search the weather for any place of the world quickly",
   "icons": [
     {
       "src": "./images/icon-quick-weather.png",
       "type": "image/png",
-      "sizes": "1024x1024"
+      "sizes": "460x460"
+    },
+    {
+      "src": "./images/icon-quick-weather(180x180).png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "./images/icon-quick-weather(512x512).png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
-  "start_url": "https://quickweather.vercel.app",
+  "start_url": "https://quickweather.vercel.app/",
   "display": "standalone",
   "theme_color": "#3399ff",
   "background_color": "#fff"
