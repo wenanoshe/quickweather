@@ -17,19 +17,17 @@ self.addEventListener("install", (e) => {
   );
 });
 
-// Listen requests
-//
+// Listen requests/
 self.addEventListener("fetch", (e) => {
   e.respondWith(
-    caches.match(e.request).then(() => {
-      return fetch(e.request).catch(() => {
-        caches.match("offline.html");
-      });
-    })
+    caches
+      .match(e.request)
+      .then((response) => response || fetch(e.request))
+      .catch(() => caches.match("offline.html"))
   );
 });
 
-// Activate
+// Activate/
 //
 self.addEventListener("activate", (e) => {
   const cacheWhitelist = [];
