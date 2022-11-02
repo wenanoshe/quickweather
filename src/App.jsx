@@ -12,7 +12,7 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState("");
   const [loadding, setLoadding] = useState(false);
-  const [isOnLine, setIsOnLine] = useState(navigator.isOnLine);
+  const [isOnLine, setIsOnLine] = useState(navigator.onLine);
 
   useEffect(() => {
     window.addEventListener("offline", () => setIsOnLine(false));
