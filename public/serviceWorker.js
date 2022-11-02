@@ -1,6 +1,10 @@
 const CACHE_NAME = "v-1";
 
-const assets = ["index.html", "offline.html"];
+const assets = [
+  "index.html",
+  "offline.html",
+  "https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Raleway:wght@200;300;600;700;800&display=swap",
+];
 
 const self = this;
 
@@ -17,21 +21,10 @@ self.addEventListener("install", (e) => {
   );
 });
 
-// Listen requests/
-self.addEventListener("fetch", (e) => {
-  e.respondWith(
-    caches
-      .match(e.request)
-      .then((response) => response || fetch(e.request))
-      .catch(() => caches.match("offline.html"))
-  );
-});
-
 // Activate/
-//
+
 self.addEventListener("activate", (e) => {
-  const cacheWhitelist = [];
-  cacheWhitelist.push(CACHE_NAME);
+  const cacheWhitelist = [CACHE_NAME];
 
   e.waitUntil(
     caches.keys().then((cacheNames) =>
@@ -44,4 +37,17 @@ self.addEventListener("activate", (e) => {
       )
     )
   );
+});
+
+// Listen requests/
+self.addEventListener("fetch", (e) => {
+  const result = caches
+    .match(e.request)
+    .then((response) => response || fetch(e.request))
+    .catch((err) => {
+      console.log(err);
+      return caches.match("offline.html");
+    });
+
+  e.respondWith(result);
 });
