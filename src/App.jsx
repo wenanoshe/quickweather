@@ -1,7 +1,7 @@
 import "normalize.css";
 import "./App.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fetchWeather } from "./api/fetchWeather";
 
 import Message from "./components/Message";
@@ -12,15 +12,20 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState("");
   const [loadding, setLoadding] = useState(false);
+  const [isOnLine, setIsOnLine] = useState(navigator.isOnLine);
+
+  useEffect(() => {
+    window.addEventListener("offline", () => setIsOnLine(false));
+    window.addEventListener("online", () => setIsOnLine(true));
+  }, []);
 
   const search = async (e) => {
     e.preventDefault();
 
     if (!navigator.onLine) {
-      window.location += "offline.html";
-
       return;
     }
+
     setLoadding(true);
 
     /* Verification */
@@ -38,32 +43,41 @@ const App = () => {
   return (
     <>
       <h1>Quick weather</h1>
-      <form className="form">
-        <input
-          className="form__input"
-          type="text"
-          placeholder="London..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
 
-        <button type="submit" onClick={search} className="form__btn">
-          <span>Search</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6 form__icon"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+      <form className="form">
+        {isOnLine ? (
+          <>
+            <input
+              className="form__input"
+              type="text"
+              placeholder="London..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
             />
-          </svg>
-        </button>
+
+            <button type="submit" onClick={search} className="form__btn">
+              <span>Search</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 form__icon"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                />
+              </svg>
+            </button>
+          </>
+        ) : (
+          <p className="form__noSearch">
+            It is not posible to know the weather, because you are offline
+          </p>
+        )}
       </form>
 
       {loadding ? (

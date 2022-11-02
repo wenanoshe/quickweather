@@ -11,6 +11,8 @@
   --blue-800: #0f2e4d;
   --blue-900: #192c39;
 
+  --red-400: #ff584d;
+
   --y: #ffb333;
 
   --btn: #80bfff;
@@ -104,6 +106,13 @@ h1 {
 
 .form__icon {
   width: 2rem;
+}
+
+.form__noSearch {
+  color: var(--red-400);
+  height: 3.4rem;
+  display: flex;
+  align-items: center;
 }
 
 /* Card */
