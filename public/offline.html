@@ -120,7 +120,7 @@
       // Listen to changes in the network state, reload when online.
       // This handles the case when the device is completely offline.
       window.addEventListener("online", () => {
-        window.location.reload();
+        window.location = window.location.origin;
       });
     </script>
   </body>

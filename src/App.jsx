@@ -15,6 +15,12 @@ const App = () => {
 
   const search = async (e) => {
     e.preventDefault();
+
+    if (!navigator.onLine) {
+      window.location += "offline.html";
+
+      return;
+    }
     setLoadding(true);
 
     /* Verification */
@@ -24,7 +30,6 @@ const App = () => {
     } else if (query.length === 0) return;
 
     const res = await fetchWeather(query);
-    // console.log(res);
     setWeather(res);
     setQuery("");
     setLoadding(false);
