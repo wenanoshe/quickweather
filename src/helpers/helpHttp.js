@@ -17,9 +17,7 @@ export function helpHttp() {
 
     setTimeout(() => {
       controller.abort();
-    }, 3000);
-
-    // console.log(options);
+    }, 10000);
 
     return fetch(endpoint, options)
       .then((res) =>
