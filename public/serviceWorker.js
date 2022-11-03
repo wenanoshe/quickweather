@@ -44,9 +44,12 @@ self.addEventListener("fetch", (e) => {
   const result = caches
     .match(e.request)
     .then((response) => response || fetch(e.request))
-    .catch((err) => {
-      console.log(err);
-      return caches.match("offline.html");
+    .catch(async (err) => {
+      console.warn("Fetch failed; returning offline page instead.", err);
+
+      const cache = await caches.open(CACHE_NAME);
+      const cachedResponse = await cache.match("offline.html");
+      return cachedResponse;
     });
 
   e.respondWith(result);
